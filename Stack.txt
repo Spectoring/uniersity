@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
 
 class Program
 {
 
     static void Main()
     {
-
         Stack s = new Stack(10);
         Console.Clear();
         Console.WriteLine("Stack created. Possible commands are:");
@@ -20,7 +18,7 @@ class Program
         Console.WriteLine("q <number> - find element");
         Console.WriteLine("x - exit");
         Console.WriteLine("----------------------------------------------");
-
+        
         while (true)
         {
             Console.Write("> ");
@@ -55,11 +53,8 @@ class Program
                     Console.WriteLine("No such command");
                     break;
             }
-
         }
-
     }
-
 }
 
 class Stack
