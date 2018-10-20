@@ -1,0 +1,25 @@
+using System;
+
+class Program
+{
+    public static void Main(string[] args)
+    {
+        var s = int.Parse(Console.ReadLine());
+        int i = 0;
+        while (s != 1)
+        {
+            if (s >= 1)
+            {
+                i += s;
+                s--;
+            }
+            else if (s <= 0)
+            {
+                i += s;
+                s++;
+            }
+        }
+        Console.Write(i + 1);
+    }
+}
+

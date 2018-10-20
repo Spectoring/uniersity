@@ -1,0 +1,12 @@
+using System;
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var s = Console.In.ReadToEnd().Split(new char[] {' ', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            int a = int.Parse(s[0]) - int.Parse(s[4]);
+            int b = int.Parse(s[1]) - int.Parse(s[3]);
+            Console.WriteLine(a + " " + b);
+        }
+}

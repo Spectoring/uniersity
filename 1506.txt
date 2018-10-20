@@ -1,0 +1,29 @@
+using System;
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n,k,i,j;
+            int[] a = new int[101];
+            var s = Console.ReadLine().Split();
+            k = short.Parse(s[1]);
+            n = short.Parse(s[0]);
+            k = (n + k - 1) / k;
+            var temp = Console.ReadLine().Split();
+            for (i = 0; i < n; i++)
+                a[i] = int.Parse(temp[i]);
+            for (j = 0; j < k; j++)
+            {
+                if (j != 0)
+                {
+                    Console.Write("\n");
+                    for (i = j; i < n; i += k)
+                        Console.Write(" " + String.Format("{0,3}", a[i]));
+                }
+               else
+                  for (i = j; i < n; i += k)
+                        Console.Write(" " + String.Format("{0,3}", a[i]));
+            }
+        }
+    }

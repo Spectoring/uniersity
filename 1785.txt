@@ -1,0 +1,18 @@
+using System;
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int a = int.Parse(Console.ReadLine());
+            if ((a >= 1) && (a <= 4)) Console.WriteLine("few");
+            if ((a >= 5) && (a <= 9)) Console.WriteLine("several");
+            if ((a >= 10) && (a <= 19)) Console.WriteLine("pack");
+            if ((a >= 20) && (a <= 49)) Console.WriteLine("lots");
+            if ((a >= 50) && (a <= 99)) Console.WriteLine("horde");
+            if ((a >= 100) && (a <= 249)) Console.WriteLine("throng");
+            if ((a >= 250) && (a <= 499)) Console.WriteLine("swarm");
+            if ((a >= 500) && (a <= 999)) Console.WriteLine("zounds");
+            if (a >= 1000) Console.WriteLine("legion");
+        }
+    }

@@ -1,0 +1,16 @@
+﻿using System;
+
+namespace ConsoleApplication4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var s = Console.In.ReadToEnd().Split(new char[] {'\n'}, StringSplitOptions.RemoveEmptyEntries);
+            if (((int.Parse(s[0]) % 2) == 0) || ((int.Parse(s[1]) % 2) != 0))
+                Console.WriteLine("yes");
+            else
+                Console.WriteLine("no");
+        }
+    }
+}

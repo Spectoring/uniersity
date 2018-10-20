@@ -1,0 +1,140 @@
+using System.Text;
+using System;
+ 
+namespace Menu
+{
+    class Program
+    {
+        delegate void method();
+        static void Main(string[] args)
+        {
+            string[] items = { "Фаренгейта -> Цельсия", "Цельсия -> Фаренгейта","Мини игра", "Выход" };
+            method[] methods = new method[] { Method1, Method2, Method3, Exit};
+            ConsoleMenu menu = new ConsoleMenu(items);
+            int menuResult;
+            do
+            {
+                menuResult = menu.PrintMenu();
+                methods[menuResult]();
+                Console.WriteLine("Для продолжения нажмите любую клавишу");
+                Console.ReadKey();
+            } while (menuResult != items.Length - 1);
+        }
+ 
+        static void Method1()
+        {
+            Console.Clear();
+            Console.WriteLine("Перевод температуры по шкале Фаренгейта в температуру по шкале Цельсия\n");
+            Console.Write("Введите температуру по шкале Фаренгейта: ");
+            float Tf = float.Parse(Console.ReadLine());
+            float Tc = ((Tf - 32) * 5) / 9;
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Температура по шкале Цельсия: " + Tc.ToString("F" + 1));
+                Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void Method2()
+        {
+            Console.Clear();
+            Console.WriteLine("Перевод температуры по шкале Цельсия в температуру по шкале Фаренгейта\n");
+            Console.Write("Введите температуру по шкале Цельсия: ");
+            float Tc2 = float.Parse(Console.ReadLine());
+            float Tf2 = (9*Tc2)/5 + 32;
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Температура по шкале Цельсия: " + Tf2.ToString("F" + 1));
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void Method3()
+        {
+            MiniGame();
+        }
+
+        static void Exit()
+        {
+            Console.WriteLine("Приложение заканчивает работу!");
+        }
+        
+        static void MiniGame()
+        {
+            Console.Clear();
+            Console.WriteLine("Вам необходимо угадать число от 0 до 100");
+            Random rnd = new Random();
+            int value = rnd.Next(101);
+            int tries = 0;
+            int guess;
+            do
+            {
+                Console.Write("Введите число: \n");
+                guess = int.Parse(Console.ReadLine());
+                ++tries;
+                if (guess > value)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Слишком много");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else if (guess < value)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("Слишком мало");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Поздравляю! Вы сделали это за " + tries + " попыток(и).");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }while(guess != value);
+        }
+    }
+ 
+ 
+    class ConsoleMenu
+    {
+        string[] menuItems;
+        int counter = 0;
+        public ConsoleMenu(string[] menuItems)
+        {
+            this.menuItems = menuItems;
+        }
+ 
+        public int PrintMenu()
+        {
+            ConsoleKeyInfo key;
+            do
+            {
+                Console.Clear();
+                for (int i = 0; i < menuItems.Length; i++)
+                {
+                    if (counter == i)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Cyan;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine(menuItems[i]);
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                        Console.WriteLine(menuItems[i]);
+ 
+                }
+                key = Console.ReadKey();
+                if (key.Key == ConsoleKey.UpArrow)
+                {
+                    counter--;
+                    if (counter == -1) counter = menuItems.Length - 1;
+                }
+                if (key.Key == ConsoleKey.DownArrow)
+                {
+                    counter++;
+                    if (counter == menuItems.Length) counter = 0;
+                }
+            }
+            while (key.Key != ConsoleKey.Enter);
+            return counter;
+        }
+ 
+    }
+    
+    
+}

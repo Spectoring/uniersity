@@ -1,0 +1,53 @@
+using System;
+
+    class Program
+    {
+        public static int[] arrayOfPrime = new int[15000+1];
+        static void Main(string[] args)
+        {
+            int numOfInputs = Convert.ToInt32(Console.ReadLine());
+            long[] input = new long[numOfInputs];
+            int i = 0;
+            while (i != numOfInputs)
+            {
+                input[i] = Convert.ToInt64(Console.ReadLine());
+                i++;
+            }
+            SievePrime();
+            for (int k = 0; k < input.Length; k++)
+            {
+                System.Console.WriteLine(arrayOfPrime[input[k]-1]);
+            }
+        }
+
+        static void SievePrime()
+        {
+            bool[] primeList = new bool[163842];
+            Prime[0] = false;
+            Prime[1] = false;
+            for (int i = 2; i <= 163841; i++)
+            {
+                Prime[i] = true;
+            }
+            for (int i = 2; i*i <= 163841; i++)
+            {
+                if (Prime[i])
+                {
+                    for (int mul = 2; mul * i <= 163841; mul++)
+                    {
+                        Prime[i*mul] = false;
+                    }
+                }
+
+            }
+            int index = 0;
+            for (int i = 2; i <= 163841; i++)
+            {
+                if (Prime[i])
+                {
+                    arrayOfPrime[index] = i;
+                    index++;
+                }
+            }
+        }
+    }

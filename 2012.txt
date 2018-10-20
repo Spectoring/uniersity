@@ -1,0 +1,18 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var s = Console.ReadLine().Split();
+        int x = int.Parse(s[0]);
+        if (x >= 1 && x <= 11)
+        {
+            int a = 12 - x;
+            if (a * 45 <= 240)
+                Console.WriteLine("YES");
+            else
+                Console.WriteLine("NO");
+        }
+    }
+}
